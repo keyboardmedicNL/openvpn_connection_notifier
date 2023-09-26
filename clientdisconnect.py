@@ -6,6 +6,8 @@ common_name = os.environ['common_name']
 ip = os.environ['untrusted_ip']
 recieved = os.environ['bytes_received']
 send = os.environ['bytes_sent']
+
+# your webhook url here
 url = ""
 
 data = {

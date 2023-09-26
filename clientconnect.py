@@ -4,6 +4,8 @@ import requests
 # variables
 common_name = os.environ['common_name']
 ip = os.environ['untrusted_ip']
+
+# your webhook url here
 url = ""
 
 data = {
