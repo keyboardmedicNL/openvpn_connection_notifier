@@ -4,11 +4,19 @@ import requests
 # variables
 common_name = os.environ['common_name']
 ip = os.environ['untrusted_ip']
+gotifyurl = ""
+gotifytoken = ""
+discordurl = ""
 
-# your webhook url here
-url = ""
-
-data = {
+# main
+if gotifyurl != "":
+    resp = requests.post(f'{gotifyurl}/message?token={gotifytoken}', json={
+        "title": "Client connected to vpn ",
+        "message": f"{common_name} {ip}",
+        "priority": 10
+    })
+if discordurl != "":
+    resp = requests.post(discordurl, json={
     "embeds": [
         {
             "title": "VPNWATCHDOG",
@@ -23,9 +31,4 @@ data = {
                     "name": "IP:",
                     "value": ip,
                 }]
-        }
-    ]
-}
-
-# main script
-rl = requests.post(url, json=data)
+        }]})
