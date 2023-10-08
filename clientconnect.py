@@ -7,6 +7,8 @@ ip = os.environ['untrusted_ip']
 gotifyurl = ""
 gotifytoken = ""
 discordurl = ""
+telegramtoken = ""
+telegramchatid = ""
 
 # main
 if gotifyurl != "":
@@ -32,3 +34,6 @@ if discordurl != "":
                     "value": ip,
                 }]
         }]})
+if telegramtoken != "":
+    resp = requests.post(
+        url=f'https://api.telegram.org/bot{telegramtoken}/sendMessage?chat_id={telegramchatid}&text=Client connected to vpn with name: {common_name} and ip: {ip}').json()
