@@ -9,6 +9,8 @@ received = os.environ['bytes_received']
 gotifyurl = ""
 gotifytoken = ""
 discordurl = ""
+telegramtoken = ""
+telegramchatid = ""
 
 # main
 if gotifyurl != "":
@@ -44,4 +46,4 @@ if discordurl != "":
         }]})
 if telegramtoken != "":
     resp = requests.post(
-        url=f'https://api.telegram.org/bot{telegramtoken}/sendMessage?chat_id={telegramchatid}&text=Client disconnected from vpn with name: {common_name}, ip: {ip}, bytes sent: {bytes_sent} and bytes recieved: {bytes_received}').json()
+        url=f'https://api.telegram.org/bot{telegramtoken}/sendMessage?chat_id={telegramchatid}&text=Client disconnected from vpn with name: {common_name}, ip: {ip}, bytes sent: {sent} and bytes recieved: {received}').json()
