@@ -46,4 +46,4 @@ if discordurl != "":
         }]})
 if telegramtoken != "":
     resp = requests.post(
-        url=f'https://api.telegram.org/bot{telegramtoken}/sendMessage?chat_id={telegramchatid}&text=Client disconnected from vpn with name: {common_name}, ip: {ip}, bytes sent: {sent} and bytes recieved: {received}').json()
+        url=f'https://api.telegram.org/bot{telegramtoken}/sendMessage?chat_id={telegramchatid}&parse_mode=html&text=<b><u>VPN client disconnected</u></b> %0AName: <b><i>{common_name}</i></b> %0AIp: <b><i>{ip}</i></b> %0ABytes sent: <b><i>{sent}</i></b> %0ABytes recieved: <b><i>{received}</i></b>').json()
