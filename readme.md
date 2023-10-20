@@ -1,5 +1,5 @@
 # what is it
-2 simple scripts that are called by the openvpn config when a client connects or disconnect wich send a message to a discord webhook to notify you someone connected or disconnected. it shows the ip and profile used on connect and ip, profile used, bytes recieved and bytes send on disconnect
+2 simple scripts that are called by the openvpn config when a client connects or disconnect wich send a message to a discord webhook, gotify hook or telegram bot to notify you someone connected or disconnected. it shows the ip and profile used on connect and ip, profile used, bytes recieved and bytes send on disconnect
 
 # how to use
 1. add your webhook url to the url variable in the scripts (leave empty if you do not intent to use a certain notification service)
