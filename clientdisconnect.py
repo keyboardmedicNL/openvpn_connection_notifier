@@ -12,11 +12,21 @@ discordurl = ""
 telegramtoken = ""
 telegramchatid = ""
 
+#converts bytes to mb,gb,etc
+def convert_bytes(num):
+    step_unit = 1000.0
+    for x in ['bytes', 'KB', 'MB', 'GB', 'TB']:
+        if num < step_unit:
+            return "%3.1f %s" % (num, x)
+        num /= step_unit
+
 # main
+bytesformsent = convert_bytes(int(sent))
+bytesformrec = convert_bytes(int(received))
 if gotifyurl != "":
     resp = requests.post(f'{gotifyurl}/message?token={gotifytoken}', json={
         "title": "Client disconnected from vpn ",
-        "message": f"{common_name} {ip} bytes sent: {sent} bytes received: {received}",
+        "message": f"{common_name} {ip} data sent: {bytesformsent} data received: {bytesformrec}",
         "priority": 10
     })
 if discordurl != "":
@@ -36,14 +46,14 @@ if discordurl != "":
                     "value": ip,
                 },
                 {
-                    "name": "Bytes sent:",
-                    "value": sent,
+                    "name": "Data sent:",
+                    "value": bytesformsent,
                 },
                 {
-                    "name": "Bytes received:",
-                    "value": received
+                    "name": "Data received:",
+                    "value": bytesformrec
                 }]
         }]})
 if telegramtoken != "":
     resp = requests.post(
-        url=f'https://api.telegram.org/bot{telegramtoken}/sendMessage?chat_id={telegramchatid}&parse_mode=html&text=<b><u>VPN client disconnected</u></b> %0AName: <b><i>{common_name}</i></b> %0AIp: <b><i>{ip}</i></b> %0ABytes sent: <b><i>{sent}</i></b> %0ABytes recieved: <b><i>{received}</i></b>').json()
+        url=f'https://api.telegram.org/bot{telegramtoken}/sendMessage?chat_id={telegramchatid}&parse_mode=html&text=<b><u>VPN client disconnected</u></b> %0AName: <b><i>{common_name}</i></b> %0AIp: <b><i>{ip}</i></b> %0AData sent: <b><i>{bytesformsent}</i></b> %0AData recieved: <b><i>{bytesformrec}</i></b>').json()
